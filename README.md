@@ -35,3 +35,38 @@ jobs:
 			
 					
 ```
+
+### Using more jobs
+- this two jobs will run in parallel
+```
+name: Deploy Projet
+on: push
+jobs:
+	test: 
+		runs-on: ubuntu-latest
+		steps: 
+			- name: Get code
+				uses: actions/checkout@v4.1.1
+			- name: Install NodeJS
+				uses: actions/setup-node@v3
+				with:
+					node-version: 18
+			- name: Install dependencies
+				run: npm ci
+			- name: Run Tests
+				run: npm test
+    deploy:
+        steps: 
+			- name: Get code
+				uses: actions/checkout@v4.1.1
+			- name: Install NodeJS
+				uses: actions/setup-node@v3
+				with:
+					node-version: 18
+			- name: Install dependencies
+				run: npm ci
+            - name: Build project
+              run: npm run build
+            - name: Deploy
+              run: echo "Deploying ..."
+```
