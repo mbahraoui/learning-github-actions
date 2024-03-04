@@ -139,5 +139,3 @@ jobs:
               
 ```
 
-![module summary](image.png)
-
